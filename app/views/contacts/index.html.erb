@@ -1,7 +1,7 @@
 <h1>Contact List</h1>
-
+<p><a href="/contacts/new">Create New Contact</a></p>
 <% @contacts.each do |contact| %>
-  <h2> Contact: <%= contact.id %></h2>
+  <h2><a href="/contacts/<%=contact.id %>">Contact <%= contact.id %></a></h2>
   <p> Full Name: <%= contact.first_name + " " + contact.last_name %></p>
   <p> Email: <%= contact.email %> </p>
   <p> Phone Number: <%= contact.phone_number %> </p>
