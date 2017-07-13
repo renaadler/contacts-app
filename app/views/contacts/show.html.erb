@@ -1,7 +1,8 @@
   <h2> Contact: <%= @contact.id %></h2>
-  <p> Full Name: <%= @contact.first_name + " " + @contact.last_name %></p>
+  <p> Full Name: <%= @contact.full_name %></p>
   <p> Email: <%= @contact.email %> </p>
   <p> Phone Number: <%= @contact.phone_number %> </p>
+  <p>Created on: <%= @contact.friendly_created_at %></p>
   <div>
     <p><a href="/contacts/<%= @contact.id %>/edit">Edit This Contact</a></p>
   </div>
