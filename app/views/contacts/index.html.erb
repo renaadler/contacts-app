@@ -1,11 +1,20 @@
 <h1>Contact List</h1>
 <p><a href="/contacts/new">Create New Contact</a></p>
-<% @contacts.each do |contact| %>
-  <h2><a href="/contacts/<%=contact.id %>">Contact <%= contact.id %></a></h2>
-  <p> Full Name: <%= contact.full_name %></p>
-  <p> Email: <%= contact.email %> </p>
-  <p> Phone Number: <%= contact.racist %> </p>
+<% @contacts.each_slice(3) do |three_contacts| %>
+<div class="row">
+  <% three_contacts.each do |contact| %>
+    <div class="col-md-4">
+      <div class="well">
+      <h2><a href="/contacts/<%=contact.id %>">Contact <%= contact.id %></a></h2>
+      <p> Full Name: <%= contact.full_name %></p>
+      <p> Email: <%= contact.email %> </p>
+      <p> Phone Number: <%= contact.racist %> </p>
+      </div>
+    </div>
+  <% end %>
+</div>
 <% end %>
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Select
