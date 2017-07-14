@@ -1,8 +1,15 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="well">
   <h2> Contact: <%= @contact.id %></h2>
   <p> Full Name: <%= @contact.full_name %></p>
   <p> Email: <%= @contact.email %> </p>
   <p> Phone Number: <%= @contact.phone_number %> </p>
+  <p> Bio: <%= @contact.bio %></p>
   <p>Created on: <%= @contact.friendly_created_at %></p>
+ </div>
+  </div>
+  </div>
   <div>
     <p><a href="/contacts/<%= @contact.id %>/edit">Edit This Contact</a></p>
   </div>
@@ -12,3 +19,4 @@
     <% end %>
   </div>
   <p><a href="/contacts">Back to All Contacts</a></p>
+  
