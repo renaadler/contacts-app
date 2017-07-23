@@ -1,6 +1,11 @@
 class ContactsController < ApplicationController
   def index
-    @contacts = Contact.all
+    search_terms = params[:search_terms]
+    if search_terms
+      @contacts = Contact.where("first_name iLIKE ? OR last_name iLIKE ? OR email iLIKE ? OR phone_number iLIKE ? OR middle_name iLIKE ? OR bio iLIKE ?", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%")
+    else
+      @contacts = Contact.all
+    end
     render "index.html.erb"
   end
 
