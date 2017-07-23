@@ -1,12 +1,19 @@
 class ContactsController < ApplicationController
   def index
-    search_terms = params[:search_terms]
-    if search_terms
-      @contacts = Contact.where("first_name iLIKE ? OR last_name iLIKE ? OR email iLIKE ? OR phone_number iLIKE ? OR middle_name iLIKE ? OR bio iLIKE ?", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%")
+    if current_user
+      @contacts = current_user.contacts
+      render "index.html.erb"
     else
-      @contacts = Contact.all
+      flash[:warning] = "You must log in to see your contacts."
+      redirect_to '/login'
     end
-    render "index.html.erb"
+
+    # search_terms = params[:search_terms]
+    # if current_user && search_terms
+    #   @contacts = current_user.contacts.where("first_name iLIKE ? OR last_name iLIKE ? OR email iLIKE ? OR phone_number iLIKE ? OR middle_name iLIKE ? OR bio iLIKE ?", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%", "%" + search_terms + "%")
+    # else
+    #   @contacts = current_user.contacts
+    end
   end
 
   def new
@@ -20,7 +27,8 @@ class ContactsController < ApplicationController
       last_name: params[:last_name],
       email: params[:email],
       phone_number: params[:phone_number],
-      bio: params[:bio]
+      bio: params[:bio],
+      user_id: current_user.id
       )
     contact.save
     redirect_to "/contacts/#{contact.id}"
