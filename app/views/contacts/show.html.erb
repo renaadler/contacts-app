@@ -7,6 +7,9 @@
   <p> Phone Number: <%= @contact.phone_number %> </p>
   <p> Bio: <%= @contact.bio %></p>
   <p>Created on: <%= @contact.friendly_created_at %></p>
+  <div> Group:
+       <%= @contact.groups.map { |group| group.name }.join(", ") %>
+    </div>
  </div>
   </div>
   </div>
