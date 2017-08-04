@@ -23,6 +23,7 @@ class ContactsController < ApplicationController
   end
 
   def new
+    @contact = Contact.new
     render "new.html.erb"
   end
 
@@ -36,9 +37,9 @@ class ContactsController < ApplicationController
       bio: params[:bio],
       user_id: current_user.id
       )
-    if contact.save
+    if @contact.save
       flash[:success] = "Contact created."
-      redirect_to "/contacts/#{contact.id}"
+      redirect_to "/contacts/#{@contact.id}"
     else
       render "new.html.erb"
     end
