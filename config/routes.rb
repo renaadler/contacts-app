@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post "/contacts" => "contacts#create"
   get "/contacts/:id" => "contacts#show"
   get "/contacts/:id/edit" => "contacts#edit"
-  put "/contacts/:id/" => "contacts#update"
+  patch "/contacts/:id/" => "contacts#update"
   delete "/contacts/:id" => "contacts#destroy"
 
   get "/signup" => "users#new"
