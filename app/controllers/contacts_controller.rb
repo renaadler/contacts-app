@@ -60,7 +60,7 @@ class ContactsController < ApplicationController
   def update
     contact_id = params[:id]
     @contact = Contact.find_by(id: contact_id)
-    @contact.update(
+    if @contact.update(
       first_name: params[:first_name],
       middle_name: params[:middle_name],
       last_name: params[:last_name],
@@ -68,7 +68,11 @@ class ContactsController < ApplicationController
       phone_number: params[:phone_number],
       bio: params[:bio]
     )
-    redirect_to "/contacts/#{@contact.id}"
+      flash[:success] = "Contact Updated."
+      redirect_to "/contacts/#{@contact.id}"
+    else
+      render "edit.html.erb"
+    end
   end
 
   def destroy

@@ -1,6 +1,18 @@
 <h1>Edit Contact</h1>
 
 <%= form_tag "/contacts/#{@contact.id}", method: "put" do %>
+
+<% if @contact.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+ 
+    <ul>
+    <% @contact.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class="form-group">
   First Name: <input type="text" class="form-control" name="first_name" value="<%= @contact.first_name %>">
 </div>
